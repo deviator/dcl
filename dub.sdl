@@ -1,0 +1,16 @@
+name "dcl"
+
+description "OpenCL wraps"
+authors "Oleg Butko(deviator)"
+license "MIT"
+dependency "derelict-cl" version="~>2.0.0"
+
+configuration "default" {
+    targetType "sourceLibrary"
+}
+
+configuration "clglinterop" {
+    targetType "sourceLibrary"
+    dependency "derelict-gl3" version="~>1.0.18"
+    versions "clglinterop"
+}
