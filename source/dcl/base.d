@@ -99,7 +99,7 @@ package
     auto getIDsPtr(T)( T[] list... ) pure { return map!(a=>a.id)(list).array.ptr; }
 
     ///
-    auto buildFlags(T=uint)( T[] list... ) pure { return reduce!((a,b)=>a|=b)(T(0),list); }
+    auto buildFlags(T=uint)( T[] list... ) pure { return reduce!((a,b)=>a|=b)(cast(T)0,list); }
 
     unittest
     {
