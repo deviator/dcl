@@ -79,6 +79,14 @@ protected:
         //kernels.clear;
         kernels = null;
 
+        // clGetProgramInfo crashes on OSX when querying CL_PROGRAM_KERNEL_NAMES
+        // before a program is built. Here's a workaround for that.
+        version( OSX )
+        {
+            immutable hasValidInfo = any!( (a) => a.status == BuildStatus.SUCCESS )( buildInfo() );
+            if( !hasValidInfo ) return;
+        }
+
         // by standart clGetProgramInfo returns
         // CL_INVALID_PROGRAM_EXECUTABLE if param_name is
         // CL_PROGRAM_NUM_KERNELS or CL_PROGRAM_KERNEL_NAMES
